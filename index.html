@@ -370,6 +370,38 @@ html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(
 /* Dimension cards compact */
 .dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 
+
+/* Upload zones */
+.upload-zone{
+  border:1.5px solid var(--border);border-radius:10px;
+  padding:20px;text-align:center;background:#fafaf7;
+  transition:all .2s;cursor:default;
+}
+.upload-zone:hover{border-color:var(--teal);background:#f0fdf9;}
+.upload-zone.has-files{border-color:var(--green);background:#f0fdf4;}
+.uz-icon{font-size:28px;margin-bottom:8px;}
+.uz-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.uz-sub{font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:12px;}
+.uz-formats{font-size:10px;color:#b0aa9f;font-weight:600;letter-spacing:.3px;text-transform:uppercase;}
+.uz-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 16px;border-radius:7px;font-size:12.5px;font-weight:700;
+  cursor:pointer;border:1.5px solid var(--border);background:#fff;
+  font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy);
+  transition:all .15s;
+}
+.uz-btn:hover{border-color:var(--teal);color:var(--teal);background:#f0fdf9;}
+.uz-files{margin-top:10px;display:flex;flex-direction:column;gap:5px;text-align:left;}
+.uz-file-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:6px 10px;background:#fff;border:1px solid var(--border);
+  border-radius:6px;font-size:12px;
+}
+.uz-file-name{font-weight:500;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.uz-file-size{font-size:10.5px;color:var(--muted);margin:0 8px;white-space:nowrap;}
+.uz-file-remove{color:var(--red);cursor:pointer;font-size:14px;font-weight:700;border:none;background:none;padding:0 2px;line-height:1;flex-shrink:0;}
+.uz-file-item .uz-file-ok{color:var(--green);font-size:13px;}
+
 @media(max-width:900px){
   .sidebar{display:none;}
   .main-body{padding:24px 20px 80px;}
@@ -1100,6 +1132,111 @@ html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(
       </div>
     </div>
 
+
+      <!-- Upload: Business Evidence -->
+      <div class="form-card">
+        <div class="card-header">
+          <div class="card-icon ci-teal">📁</div>
+          <div>
+            <div class="card-title">Business Evidence & Sales Reports</div>
+            <div class="card-subtitle">Upload supporting documents to strengthen your application — EPP Agreement Clause 4.3</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-box"><strong>Why this matters:</strong> Uploaded evidence helps the EPP team verify your Sales Base (Schedule A), set your opening commission split, and fast-track commercial due diligence approval. All files are stored securely under DPDPA 2023 (Policy 05) and accessible only to the EPP onboarding team.</div>
+
+          <!-- Upload grid -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+
+            <!-- Bank Statements -->
+            <div class="upload-zone" id="uz-bank">
+              <input type="file" id="uf-bank" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none;" onchange="handleUpload('bank',this)">
+              <div class="uz-icon">🏦</div>
+              <div class="uz-title">Bank Statements</div>
+              <div class="uz-sub">Last 3 months — current account<br><span class="uz-formats">PDF · JPG · PNG</span></div>
+              <button class="uz-btn" onclick="document.getElementById('uf-bank').click()">Choose Files</button>
+              <div class="uz-files" id="uf-bank-list"></div>
+            </div>
+
+            <!-- GST Returns -->
+            <div class="upload-zone" id="uz-gst">
+              <input type="file" id="uf-gst" multiple accept=".pdf,.xlsx,.xls,.jpg,.png" style="display:none;" onchange="handleUpload('gst',this)">
+              <div class="uz-icon">📋</div>
+              <div class="uz-title">GST Returns (GSTR-3B)</div>
+              <div class="uz-sub">Last 2 quarters — confirms turnover<br><span class="uz-formats">PDF · XLSX · JPG</span></div>
+              <button class="uz-btn" onclick="document.getElementById('uf-gst').click()">Choose Files</button>
+              <div class="uz-files" id="uf-gst-list"></div>
+            </div>
+
+            <!-- Sales / Booking Reports -->
+            <div class="upload-zone" id="uz-sales">
+              <input type="file" id="uf-sales" multiple accept=".pdf,.xlsx,.xls,.csv,.jpg,.png" style="display:none;" onchange="handleUpload('sales',this)">
+              <div class="uz-icon">📊</div>
+              <div class="uz-title">Sales / Booking Reports</div>
+              <div class="uz-sub">Summary from your CRM, booking system,<br>or manual report of confirmed bookings<br><span class="uz-formats">PDF · XLSX · CSV · JPG</span></div>
+              <button class="uz-btn" onclick="document.getElementById('uf-sales').click()">Choose Files</button>
+              <div class="uz-files" id="uf-sales-list"></div>
+            </div>
+
+            <!-- ITR / Income Tax Return -->
+            <div class="upload-zone" id="uz-itr">
+              <input type="file" id="uf-itr" multiple accept=".pdf,.jpg,.png" style="display:none;" onchange="handleUpload('itr',this)">
+              <div class="uz-icon">💼</div>
+              <div class="uz-title">Income Tax Return (ITR)</div>
+              <div class="uz-sub">Last 2 financial years (AY 2023-24, AY 2024-25)<br><span class="uz-formats">PDF · JPG · PNG</span></div>
+              <button class="uz-btn" onclick="document.getElementById('uf-itr').click()">Choose Files</button>
+              <div class="uz-files" id="uf-itr-list"></div>
+            </div>
+
+            <!-- Supplier Invoices / Confirmations -->
+            <div class="upload-zone" id="uz-inv">
+              <input type="file" id="uf-inv" multiple accept=".pdf,.xlsx,.jpg,.png" style="display:none;" onchange="handleUpload('inv',this)">
+              <div class="uz-icon">🧾</div>
+              <div class="uz-title">Supplier Invoices / Booking Confirmations</div>
+              <div class="uz-sub">Invoices or hotel/DMC confirmations as<br>evidence of completed bookings<br><span class="uz-formats">PDF · XLSX · JPG</span></div>
+              <button class="uz-btn" onclick="document.getElementById('uf-inv').click()">Choose Files</button>
+              <div class="uz-files" id="uf-inv-list"></div>
+            </div>
+
+            <!-- P&L / Business Report -->
+            <div class="upload-zone" id="uz-pnl">
+              <input type="file" id="uf-pnl" multiple accept=".pdf,.xlsx,.xls,.jpg,.png" style="display:none;" onchange="handleUpload('pnl',this)">
+              <div class="uz-icon">📈</div>
+              <div class="uz-title">P&L / Business Financial Report</div>
+              <div class="uz-sub">Chartered Accountant signed P&L, balance<br>sheet, or audited accounts<br><span class="uz-formats">PDF · XLSX · JPG</span></div>
+              <button class="uz-btn" onclick="document.getElementById('uf-pnl').click()">Choose Files</button>
+              <div class="uz-files" id="uf-pnl-list"></div>
+            </div>
+
+          </div>
+
+          <!-- Additional documents -->
+          <div style="border:1.5px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;">
+            <div style="padding:12px 16px;background:var(--off);border-bottom:1px solid var(--border);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);">Any Other Supporting Documents</div>
+            <div style="padding:16px;">
+              <div class="upload-zone" id="uz-other" style="border-style:dashed;">
+                <input type="file" id="uf-other" multiple accept=".pdf,.xlsx,.xls,.csv,.jpg,.jpeg,.png,.doc,.docx" style="display:none;" onchange="handleUpload('other',this)">
+                <div class="uz-icon">📎</div>
+                <div class="uz-title">Additional Documents</div>
+                <div class="uz-sub">Trade show registrations, award certificates, press coverage, client testimonials, IATA certificates, or any other evidence of business activity<br><span class="uz-formats">PDF · XLSX · CSV · JPG · PNG · DOC</span></div>
+                <button class="uz-btn" onclick="document.getElementById('uf-other').click()">Choose Files</button>
+                <div class="uz-files" id="uf-other-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="form-group">
+            <label class="form-label">Notes on uploaded documents <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;">(optional)</span></label>
+            <textarea class="form-textarea" id="upload_notes" placeholder="e.g. GST filing is pending for Q3 — CA certificate attached. Bank statements show seasonal pattern — peak Oct–Mar. P&L is internal management accounts, CA-audited version to follow..."></textarea>
+          </div>
+
+          <div class="warn-box" style="margin-bottom:0;">
+            <strong>Note:</strong> Uploading documents is optional at this stage. If you prefer, your assigned KAM will collect physical or digital copies within 48 hours of application approval. However, uploading now can significantly speed up your due diligence approval and activation timeline.
+          </div>
+        </div>
+      </div>
+
     <!-- ══ SECTION 7: LAUNCH EVENT ════════════════════════════════════ -->
     <div class="section-wrap" data-sec="7">
       <div class="section-hero">
@@ -1436,6 +1573,39 @@ function selR(el,name){
 function selLaunch(el){document.querySelectorAll('.launch-opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
 function selContrib(el){document.querySelectorAll('.contrib-opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
 function showLaunch(show){document.getElementById('launch-details').style.display=show?'block':'none';}
+
+
+// ── FILE UPLOADS ──────────────────────────────────────────────────────────────
+const uploadedFiles = {};
+function handleUpload(key, input){
+  if(!uploadedFiles[key]) uploadedFiles[key]=[];
+  const files = Array.from(input.files);
+  files.forEach(f=>{
+    if(!uploadedFiles[key].find(x=>x.name===f.name && x.size===f.size)){
+      uploadedFiles[key].push(f);
+    }
+  });
+  renderFileList(key);
+  const zone = document.getElementById('uz-'+key);
+  if(zone) zone.classList.toggle('has-files', uploadedFiles[key].length>0);
+  input.value=''; // reset so same file can be re-added after removal
+}
+function removeFile(key,idx){
+  if(uploadedFiles[key]) uploadedFiles[key].splice(idx,1);
+  renderFileList(key);
+  const zone=document.getElementById('uz-'+key);
+  if(zone) zone.classList.toggle('has-files', uploadedFiles[key].length>0);
+}
+function renderFileList(key){
+  const list=document.getElementById('uf-'+key+'-list');
+  if(!list)return;
+  if(!uploadedFiles[key]||!uploadedFiles[key].length){list.innerHTML='';return;}
+  list.innerHTML=uploadedFiles[key].map((f,i)=>{
+    const size=f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024).toFixed(0)+' KB';
+    const name=f.name.length>30?f.name.slice(0,27)+'...':f.name;
+    return `<div class="uz-file-item"><span class="uz-file-ok">✓</span><span class="uz-file-name" title="${f.name}">&nbsp;${name}</span><span class="uz-file-size">${size}</span><button class="uz-file-remove" onclick="removeFile('${key}',${i})" title="Remove">×</button></div>`;
+  }).join('');
+}
 
 // ── SIGNATURE ─────────────────────────────────────────────────────────────────
 (function(){
