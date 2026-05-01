@@ -969,6 +969,10 @@ html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(
             <div class="form-group"><label class="form-label">Flight Revenue (annual)</label><input class="form-input" id="m_fl" type="text" placeholder="e.g. ₹3 Cr"></div>
             <div class="form-group"><label class="form-label">Visa Revenue (annual)</label><input class="form-input" id="m_vis" type="text" placeholder="e.g. ₹25L"></div>
           </div>
+          <div class="form-row c3">
+            <div class="form-group"><label class="form-label">Standalone Hotel Revenue (annual)</label><input class="form-input" id="m_hotel" type="text" placeholder="e.g. ₹80L"><div class="form-hint">Hotels booked independently without a package</div></div>
+            <div class="form-group"><label class="form-label">Other Revenue (specify)</label><input class="form-input" id="m_other_rev" type="text" placeholder="e.g. ₹15L — MICE, Travel Insurance"></div>
+          </div>
           <div class="form-row">
             <div class="form-group"><label class="form-label">Average Package Margin %</label><div class="slider-row"><input type="range" class="range-slider" min="5" max="30" value="12" id="m_mar" oninput="document.getElementById('m_mv').textContent=this.value+'%'"><span class="range-val" id="m_mv">12%</span></div></div>
             <div class="form-group"><label class="form-label">% of business that could move to TF in 90 days</label><div class="slider-row"><input type="range" class="range-slider" min="0" max="100" value="30" id="m_mig" oninput="document.getElementById('m_migv').textContent=this.value+'%'"><span class="range-val" id="m_migv">30%</span></div></div>
@@ -1042,12 +1046,20 @@ html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(
                 <label class="r-opt" style="padding:6px 14px;margin:0;" onclick="selR(this,'dd1')"><input type="radio" name="dd1" value="Yes"><span class="r-opt-label">Yes</span></label>
               </div>
             </div>
+            <div id="dd_dd1_comment" style="display:none;padding:10px 16px 14px;background:#fff8f6;border-top:1px solid rgba(204,51,0,.1);">
+              <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--red);display:block;margin-bottom:6px;">Please provide details ↓</label>
+              <textarea class="form-textarea" id="dd_dd1_exp" placeholder="Please provide details of the default — company, amount, date, and current status:" style="min-height:70px;border-color:rgba(204,51,0,.2);background:#fff;"></textarea>
+            </div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:#fafaf7;border:1.5px solid var(--border);border-radius:8px;">
               <span style="font-size:13.5px;font-weight:500;">Any pending or active legal disputes with clients or suppliers?</span>
               <div style="display:flex;gap:8px;">
                 <label class="r-opt" style="padding:6px 14px;margin:0;" onclick="selR(this,'dd2')"><input type="radio" name="dd2" value="No"><span class="r-opt-label">No</span></label>
                 <label class="r-opt" style="padding:6px 14px;margin:0;" onclick="selR(this,'dd2')"><input type="radio" name="dd2" value="Yes"><span class="r-opt-label">Yes</span></label>
               </div>
+            </div>
+            <div id="dd_dd2_comment" style="display:none;padding:10px 16px 14px;background:#fff8f6;border-top:1px solid rgba(204,51,0,.1);">
+              <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--red);display:block;margin-bottom:6px;">Please provide details ↓</label>
+              <textarea class="form-textarea" id="dd_dd2_exp" placeholder="Please describe the dispute — nature, parties involved, current status, and expected resolution:" style="min-height:70px;border-color:rgba(204,51,0,.2);background:#fff;"></textarea>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:#fafaf7;border:1.5px solid var(--border);border-radius:8px;">
               <span style="font-size:13.5px;font-weight:500;">Business GST-registered and compliant with filing obligations?</span>
@@ -1056,12 +1068,20 @@ html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(
                 <label class="r-opt" style="padding:6px 14px;margin:0;" onclick="selR(this,'dd3')"><input type="radio" name="dd3" value="Partial"><span class="r-opt-label">Partially</span></label>
               </div>
             </div>
+            <div id="dd_dd3_comment" style="display:none;padding:10px 16px 14px;background:#fff8f6;border-top:1px solid rgba(204,51,0,.1);">
+              <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--red);display:block;margin-bottom:6px;">Please provide details ↓</label>
+              <textarea class="form-textarea" id="dd_dd3_exp" placeholder="Please explain the GST compliance position and any steps being taken to regularise:" style="min-height:70px;border-color:rgba(204,51,0,.2);background:#fff;"></textarea>
+            </div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:#fafaf7;border:1.5px solid var(--border);border-radius:8px;">
               <span style="font-size:13.5px;font-weight:500;">Any sub-agent or white-labelling arrangements with other operators?</span>
               <div style="display:flex;gap:8px;">
                 <label class="r-opt" style="padding:6px 14px;margin:0;" onclick="selR(this,'dd4')"><input type="radio" name="dd4" value="No"><span class="r-opt-label">No</span></label>
                 <label class="r-opt" style="padding:6px 14px;margin:0;" onclick="selR(this,'dd4')"><input type="radio" name="dd4" value="Yes"><span class="r-opt-label">Yes</span></label>
               </div>
+            </div>
+            <div id="dd_dd4_comment" style="display:none;padding:10px 16px 14px;background:#fff8f6;border-top:1px solid rgba(204,51,0,.1);">
+              <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--red);display:block;margin-bottom:6px;">Please provide details ↓</label>
+              <textarea class="form-textarea" id="dd_dd4_exp" placeholder="Please describe the sub-agent or white-label arrangement — operators involved and nature of the arrangement:" style="min-height:70px;border-color:rgba(204,51,0,.2);background:#fff;"></textarea>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:#fafaf7;border:1.5px solid var(--border);border-radius:8px;">
               <span style="font-size:13.5px;font-weight:500;">Any director or partner holds interest in a Competing Business? (EPP Clause 14.4)</span>
@@ -1070,8 +1090,12 @@ html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(
                 <label class="r-opt" style="padding:6px 14px;margin:0;" onclick="selR(this,'dd5')"><input type="radio" name="dd5" value="Yes"><span class="r-opt-label">Yes</span></label>
               </div>
             </div>
+            <div id="dd_dd5_comment" style="display:none;padding:10px 16px 14px;background:#fff8f6;border-top:1px solid rgba(204,51,0,.1);">
+              <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--red);display:block;margin-bottom:6px;">Please provide details ↓</label>
+              <textarea class="form-textarea" id="dd_dd5_exp" placeholder="Please disclose the competing business interest — nature of business, % shareholding, and whether you intend to continue:" style="min-height:70px;border-color:rgba(204,51,0,.2);background:#fff;"></textarea>
+            </div>
           </div>
-          <div class="form-group" style="margin-top:16px;"><label class="form-label">If you answered Yes to any of the above, please explain</label><textarea class="form-textarea" id="dd_exp" placeholder="Please provide context, dates, and current status..."></textarea></div>
+
         </div>
       </div>
     </div>
@@ -1394,7 +1418,21 @@ function submitForm(){
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function togC(el){const cb=el.querySelector('input[type=checkbox]');if(cb){cb.checked=!cb.checked;el.classList.toggle('sel',cb.checked);}}
-function selR(el,name){document.querySelectorAll(`input[name="${name}"]`).forEach(r=>{const p=r.closest('.r-opt');if(p)p.classList.remove('sel');});el.classList.add('sel');const cb=el.querySelector('input[type=radio]');if(cb)cb.checked=true;}
+function selR(el,name){
+  document.querySelectorAll(`input[name="${name}"]`).forEach(r=>{const p=r.closest('.r-opt');if(p)p.classList.remove('sel');});
+  el.classList.add('sel');
+  const cb=el.querySelector('input[type=radio]');
+  if(cb)cb.checked=true;
+  // Show comment box if Yes/Partial selected for DD questions
+  const ddNames=['dd1','dd2','dd3','dd4','dd5'];
+  if(ddNames.includes(name)){
+    const box=document.getElementById('dd_'+name+'_comment');
+    if(box){
+      const val=cb?cb.value:'';
+      box.style.display=(val==='Yes'||val==='Partial')?'block':'none';
+    }
+  }
+}
 function selLaunch(el){document.querySelectorAll('.launch-opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
 function selContrib(el){document.querySelectorAll('.contrib-opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
 function showLaunch(show){document.getElementById('launch-details').style.display=show?'block':'none';}
